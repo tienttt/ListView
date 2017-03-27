@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 import com.ygaps.listview.R;
 import com.ygaps.listview.model.CourseInfo;
@@ -52,6 +53,12 @@ public class CourseListAdapter extends BaseAdapter {
                     .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
             convertView = mInflater.inflate(R.layout.course_info_row, null);
         }
+
+        CourseInfo ci = mData.get(position);
+        TextView tvName = (TextView) convertView.findViewById(R.id.tv_Name);
+        tvName.setText(ci.getName());
+        TextView tvGrade = (TextView) convertView.findViewById(R.id.tv_Grade);
+        tvGrade.setText(ci.getGrade() + "");
 
         return convertView;
     }
