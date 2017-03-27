@@ -2,10 +2,13 @@ package com.ygaps.listview.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -60,6 +63,18 @@ public class SemesterListAdapter extends BaseAdapter {
         tvName.setText(si.getName());
         ListView lvCourse = (ListView) convertView.findViewById(R.id.lv_Courses);
         lvCourse.setAdapter(new CourseListAdapter(si.getCourseList(), mContext));
+
+        Resources r = ((Activity)mContext).getResources();
+        int HeightOfCourse = 30;
+        int DividerOfCourse = 4;
+        int t = 0;
+        int size = si.getCourseList().size();
+        if(size >= 1){
+            t = size * HeightOfCourse + (size-1) * DividerOfCourse;
+        }
+        float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, t, r.getDisplayMetrics());
+        LinearLayout.LayoutParams mParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,(int)(px));
+        lvCourse.setLayoutParams(mParam);
 
         return convertView;
     }
