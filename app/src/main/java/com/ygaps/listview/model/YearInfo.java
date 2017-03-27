@@ -10,6 +10,10 @@ public class YearInfo {
     private String name;
     private ArrayList<SemesterInfo> semesterList;
 
+    public YearInfo(){
+        semesterList = new ArrayList<>();
+    }
+
     public String getName() {
         return name;
     }
