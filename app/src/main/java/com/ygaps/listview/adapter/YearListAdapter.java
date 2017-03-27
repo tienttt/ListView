@@ -6,9 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.ygaps.listview.R;
+import com.ygaps.listview.model.SemesterInfo;
 import com.ygaps.listview.model.YearInfo;
 
 import java.util.ArrayList;
@@ -52,6 +54,12 @@ public class YearListAdapter extends BaseAdapter {
                     .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
             convertView = mInflater.inflate(R.layout.year_info_row, null);
         }
+
+        YearInfo yi = mData.get(position);
+        TextView tvName = (TextView) convertView.findViewById(R.id.tv_Name);
+        tvName.setText(yi.getName());
+        ListView lvCourse = (ListView) convertView.findViewById(R.id.lv_Semesters);
+        lvCourse.setAdapter(new SemesterListAdapter(yi.getSemesterList(), mContext));
 
         return convertView;
     }
